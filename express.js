@@ -1,4 +1,7 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
 
@@ -22,6 +25,10 @@ app.get('/', function(req, res) {
 
 app.get('/contact', function(req, res) {
     res.render('contact', {qs: req.query});
+});
+
+app.post('/contact', urlencodedParser, function(req, res) {
+    res.render('contact-success', {data: req.body});
 });
 
 /* app.get('/', function(req, res) {
